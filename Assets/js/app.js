@@ -1,5 +1,5 @@
 console.log('If this is logged, then app.js is linked correctly.');
-
+console.log()
 // LOAD HEADER TIMER
 let dateTimeEl = $('#current-day');
 
@@ -12,6 +12,22 @@ let loadHeaderTimer = () => {
   dateTimeEl[0].textContent =(moment().format('MMMM Do YYYY, h:mm:ss a'));
   setInterval(updateDateTime, 1000);
 }
+//END LOAD HEADER TIMER
+
+
+let isPastPresentOrFuture = (timeBlockHour) => {
+  //compare hour of current moment to the hour of the specified timeblock
+  let currentHour = moment().hour();
+  console.log(timeBlockHour);
+  console.log(currentHour);
+  if (currentHour === timeBlockHour){
+    return 'present';
+  } else if(currentHour < timeBlockHour) {
+    return 'future';
+  } else {
+    return 'past';
+  }
+}
 
 let loadTimeBlocks = () => {
   console.log(`loadTimeBlocks FIRED`)
@@ -23,16 +39,20 @@ let loadTimeBlocks = () => {
     let currentRowEl = $(`<div class='row'></div>`);
       let currentHourEl = $(`<div class='col-1 hour'>${i + 1}:00</div>`);
         currentHourEl.appendTo(currentRowEl);
-      let textAreaInput = $(`<textarea class="col-10 present"></textarea>`)
+      let textAreaInput = $(`<textarea class="col-10 ${isPastPresentOrFuture(i + 1)}"></textarea>`)
         textAreaInput.appendTo(currentRowEl);
       let saveButtonEl = $(`<div class="saveBtn col-1"><i class="fas fa-save"></i></div>`)
         saveButtonEl.appendTo(currentRowEl);
     currentRowEl.appendTo('#timeRows');
   }
 }
+//LOAD HEADER AND TIMER
 $(`document`).ready(loadHeaderTimer);
 $(`document`).ready(loadTimeBlocks);
-//END LOAD HEADER TIMER
+
+
+
+
 
 
 function logProperties(testObject){
