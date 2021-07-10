@@ -17,15 +17,14 @@ let loadHeaderTimer = () => {
 
 let isPastPresentOrFuture = (timeBlockHour) => {
   //compare hour of current moment to the hour of the specified timeblock
-  let currentHour = moment().hour();
-  console.log(timeBlockHour);
-  console.log(currentHour);
+  // let currentHour = moment().hour();
+  let currentHour = 12
   if (currentHour === timeBlockHour){
-    return 'present';
+      return 'present';
   } else if(currentHour < timeBlockHour) {
-    return 'future';
+      return 'future';
   } else {
-    return 'past';
+      return 'past';
   }
 }
 
@@ -43,12 +42,24 @@ let loadTimeBlocks = () => {
         textAreaInput.appendTo(currentRowEl);
       let saveButtonEl = $(`<div class="saveBtn col-1"><i class="fas fa-save"></i></div>`)
         saveButtonEl.appendTo(currentRowEl);
-    currentRowEl.appendTo('#timeRows');
+    currentRowEl.appendTo('#time-rows-container');
   }
 }
+
+let refreshTimeBlocks = () => {
+  console.log(`UPDATING TIMEBLOCKS`)
+  $('#time-rows-container').children().remove()
+  loadTimeBlocks()
+}
+
 //LOAD HEADER AND TIMER
 $(`document`).ready(loadHeaderTimer);
 $(`document`).ready(loadTimeBlocks);
+
+//ADD EVENT LISTENER TO REFRESH TIME-BLOCKS BUTTON
+$(`#refresh`).on('click', refreshTimeBlocks);
+  
+
 
 
 
