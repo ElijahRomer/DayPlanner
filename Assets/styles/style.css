@@ -42,7 +42,7 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
-  font-size: x-large;
+  font-size: 30px;
 }
 
 .past {
@@ -74,11 +74,19 @@ textarea {
   font-size: 25px;
   color: white;
   transition: all 0.3s ease-in-out;
-
+  padding: 15px;
 }
 .saveBtn i:hover {
   font-size: 30px;
   color: #000000;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .hour {
+    display:flex;
+    justify-content: center;
+    font-size:22px;
+  }
 }

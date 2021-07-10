@@ -36,11 +36,11 @@ let loadTimeBlocks = () => {
   for (let i = businessOpen -1; i < businessClose; i++){
 
     let currentRowEl = $(`<div class='row'></div>`);
-      let currentHourEl = $(`<div class='col-1 hour'>${i + 1}:00</div>`);
+      let currentHourEl = $(`<div class='col-2 col-md-1 hour'>${i + 1}:00</div>`);
         currentHourEl.appendTo(currentRowEl);
-      let textAreaInput = $(`<textarea class="col-10 ${isPastPresentOrFuture(i + 1)}"></textarea>`)
+      let textAreaInput = $(`<textarea class="col-8 col-md-10 ${isPastPresentOrFuture(i + 1)}"></textarea>`)
         textAreaInput.appendTo(currentRowEl);
-      let saveButtonEl = $(`<div class="saveBtn col-1"><i class="fas fa-save"></i></div>`)
+      let saveButtonEl = $(`<div class="saveBtn col-2 col-md-1"><i class="fas fa-save"></i></div>`)
         saveButtonEl.appendTo(currentRowEl);
     currentRowEl.appendTo('#time-rows-container');
   }
