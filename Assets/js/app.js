@@ -50,8 +50,8 @@ let loadTimeBlocks = () => {
 let refreshTimeBlocks = () => {
   console.log(`UPDATING TIMEBLOCKS`)
   $('#time-rows-container').children().remove()
-  loadTimeBlocks()
-  retrieveEntriesFromLocalStorage()
+  loadTimeBlocks();
+  retrieveEntriesFromLocalStorage();
 }
 
 //LOAD HEADER AND TIMER
@@ -59,8 +59,29 @@ $(`document`).ready(loadHeaderTimer);
 $(`document`).ready(loadTimeBlocks);
 
 //ADD EVENT LISTENER TO REFRESH TIME-BLOCKS BUTTON
-$(`#refresh`).on('click', refreshTimeBlocks);
-  
+
+let timeBlockAutoRefresh = () => {
+  let currentPresentEl = $(".present")[0];
+  let currentPresentElTime = parseInt(currentPresentEl.id);
+  let actualTime = moment().hour();
+  if (currentPresentElTime < actualTime){
+    refreshTimeBlocks()
+  }  
+}
+
+//verify the time is current once per second
+setInterval(timeBlockAutoRefresh, 1000);
+
+let clearTaskEntries = () => {
+  console.log(`clearTaskEntries FIRED`)
+  localStorage.clear();
+  refreshTimeBlocks();
+}
+
+$(`#clear-tasks`).on('click', clearTaskEntries);
+
+
+
 //PERSIST ENTRY TO LOCAL STORAGE 
 let persistEntryToLocalStorage = (eventObject) => {
   console.log(`persistEntryToLocalStorage FIRED`);

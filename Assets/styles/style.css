@@ -47,17 +47,25 @@ textarea {
 
 .past {
   background-color: #d3d3d3;
-  color: white;
+  color: black;
+  font-size: larger;
 }
 
 .present {
   background-color: #ff6961;
   color: white;
+  font-size: larger;
 }
 
 .future {
   background-color: #77dd77;
   color: white;
+    font-size: larger;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: large;
 }
 
 .saveBtn {
