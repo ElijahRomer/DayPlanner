@@ -51,6 +51,7 @@ let refreshTimeBlocks = () => {
   console.log(`UPDATING TIMEBLOCKS`)
   $('#time-rows-container').children().remove()
   loadTimeBlocks()
+  retrieveEntriesFromLocalStorage()
 }
 
 //LOAD HEADER AND TIMER
