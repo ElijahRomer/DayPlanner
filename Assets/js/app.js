@@ -64,76 +64,24 @@ $(`#refresh`).on('click', refreshTimeBlocks);
 let persistEntryToLocalStorage = (eventObject) => {
   console.log(`persistEntryToLocalStorage FIRED`);
   let entryId = $(eventObject.target).parent().siblings('textarea').attr('id');
-  entryId = parseInt(entryId) - 8; //convert time to corresponding index in HTML collection
+  entryId = parseInt(entryId) - 8; //convert time to index in HTML collection
 
   let entry = $(eventObject.target).parent().siblings('textarea').val();
   localStorage.setItem(entryId, entry);
-
-
-  console.log(entry);
-  console.log(typeof entry);
-  console.log(entryId);
-  console.log(typeof entryId);
 }
 
-let retrieveEntriesFromLocalStorage = () => {
-  console.log(`retrieveEntriesFromLocalStorage FIRED`)
-  let textAreaHtmlCollection = $('textarea');
-  console.log(textAreaHtmlCollection);
-  console.log(`The textAreaHtmlCollection length is ${textAreaHtmlCollection.length}`);
 
+let retrieveEntriesFromLocalStorage = () => {
+  let textAreaHtmlCollection = $('textarea');
 
   for (let entryKey = 0; entryKey < textAreaHtmlCollection.length; entryKey++) {
     if(!localStorage.getItem(entryKey)){
-      console.log(`LocalStorage has no entry for the hour ${entryKey +8}, which is entry key ${entryKey}.`)
       continue;
     }
-    console.log(`LocalStorage DOES HAVE an entry for the hour ${entryKey +8}, which is entry key ${entryKey}.`)
-
-    let currentEntryValue = localStorage.getItem(entryKey); // value
-    let currentEntryTextAreaEl = $(textAreaHtmlCollection[entryKey]);
-
+      let currentEntryValue = localStorage.getItem(entryKey);
+      let currentEntryTextAreaEl = $(textAreaHtmlCollection[entryKey]);
       currentEntryTextAreaEl.val(currentEntryValue);
-
-    console.log(currentEntryTextAreaEl)
-
-    console.log(`The entryKey for hour ${entryKey +8}:00 is ${entryKey}.`)
-    console.log(`The currentEntryValue for hour ${entryKey +8}:00 is "${currentEntryValue}".`)
-
   }
-
 }
 
 $('document').ready(retrieveEntriesFromLocalStorage)
-
-
-
-
-
-
-function logProperties(testObject){
-    for (let property in testObject){
-      console.log(`testObject property: ${property} has a value of ${testObject[property]}`)
-    }
-};
-
-// GIVEN I am using a daily planner to create a schedule*************************
-
-// WHEN I open the planner
-// THEN the current day is displayed at the top of the calendar
-// DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// WHEN I scroll down
-// THEN I am presented with timeblocks for standard business hours
-
-// WHEN I view the timeblocks for that day
-// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-
-// WHEN I click into a timeblock
-// THEN I can enter an event
-
-// WHEN I click the save button for that timeblock
-// THEN the text for that event is saved in local storage
-
-// WHEN I refresh the page
-// THEN the saved events persist

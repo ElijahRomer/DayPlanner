@@ -82,6 +82,12 @@ textarea {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
+.saveBtn i:active {
+  font-size: 25px;
+  color: #777;
+  transition: all 70ms ease-in-out;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 1024px) {
   .hour {
